@@ -8,6 +8,10 @@ useHead({
   ],
   htmlAttrs: {
     lang: "ja",
+    class: "h-full"
+  },
+  bodyAttrs: {
+    class: "h-full"
   },
 })
 </script>
