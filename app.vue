@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import "bootstrap-icons/font/bootstrap-icons.css";
+
 useHead({
   title: "Nuxt3BlogApp",
   meta: [
@@ -11,7 +13,7 @@ useHead({
 </script>
 
 <template>
-  <div>
-    <NuxtWelcome />
-  </div>
+  <NuxtLayout>
+    <NuxtPage />
+  </NuxtLayout>
 </template>
