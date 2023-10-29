@@ -5,17 +5,17 @@ useHead({
   title: "ログインフォーム - Nuxt3BlogApp",
 })
 
+const runtimeConfig = useRuntimeConfig();
+
+const { data, pending, error, refresh } = await useFetch<authUser>(`${runtimeConfig.public.apiUrl}/v1/user`, {
+  headers: {
+    "Accept": "application/json",
+  },
+  credentials: "include"
+});
+await refresh();
+
 onMounted(async () => {
-  const runtimeConfig = useRuntimeConfig();
-
-  const { data, pending, error, refresh } = await useFetch<authUser>(`${runtimeConfig.public.apiUrl}/v1/user`, {
-    headers: {
-      "Accept": "application/json",
-    },
-    credentials: "include"
-  });
-  await refresh();
-
   if (data.value?.authUser) {
     await navigateTo("/");
   }

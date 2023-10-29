@@ -14,4 +14,8 @@ await refresh();
 
 <template>
   <p>Welcome! {{ data?.authUser ? data.authUser.name : "stranger" }}</p>
+
+  <nav class="text-center my-2">
+    <PostLinkButton />
+  </nav>
 </template>
