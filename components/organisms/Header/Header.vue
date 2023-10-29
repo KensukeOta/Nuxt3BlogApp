@@ -21,7 +21,7 @@
         <i class="bi bi-search"></i>
       </button>
       <NuxtLink to="/signup" class="inline-block">新規登録</NuxtLink>
-      <NuxtLink href="/login" class="inline-block">ログイン</NuxtLink>
+      <NuxtLink to="/login" class="inline-block">ログイン</NuxtLink>
     </nav>
   </header>
 </template>

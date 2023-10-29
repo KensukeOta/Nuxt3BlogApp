@@ -37,7 +37,7 @@ const onSubmit = handleSubmit(async (values) => {
   try {
     await $fetch(`${runtimeConfig.public.apiUrl}/sanctum/csrf-cookie`, {
       credentials: "include"
-    })
+    });
     await $fetch(`${runtimeConfig.public.apiUrl}/v1/users`, {
       method: "POST",
       headers: {
@@ -47,7 +47,7 @@ const onSubmit = handleSubmit(async (values) => {
       },
       body: { name: values.name, email: values.email, password: values.password, password_confirmation: values.password_confirmation },
       credentials: "include",
-    }) as any;
+    });
     await navigateTo("/");
   } catch (error: any) {
     err.value = error.data;
