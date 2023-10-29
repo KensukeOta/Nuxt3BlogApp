@@ -2,12 +2,12 @@
 import type { authUser } from '~/types/authUser';
 
 useHead({
-  title: "ユーザー登録フォーム - Nuxt3BlogApp",
+  title: "ログインフォーム - Nuxt3BlogApp",
 })
 
-onMounted(async() => {
+onMounted(async () => {
   const runtimeConfig = useRuntimeConfig();
-  
+
   const { data, pending, error, refresh } = await useFetch<authUser>(`${runtimeConfig.public.apiUrl}/v1/user`, {
     headers: {
       "Accept": "application/json",
@@ -15,7 +15,7 @@ onMounted(async() => {
     credentials: "include"
   });
   await refresh();
-  
+
   if (data.value?.authUser) {
     await navigateTo("/");
   }
@@ -23,5 +23,5 @@ onMounted(async() => {
 </script>
 
 <template>
-  <SignupForm />
+  <LoginForm />
 </template>

@@ -1,7 +1,17 @@
 <script setup lang="ts">
+import type { authUser } from "@/types/authUser";
 
+const runtimeConfig = useRuntimeConfig();
+
+const { data, pending, error, refresh } = await useFetch<authUser>(`${runtimeConfig.public.apiUrl}/v1/user`, {
+  headers: {
+    "Accept": "application/json",
+  },
+  credentials: "include"
+});
+await refresh();
 </script>
 
 <template>
-  <h1 class="font-bold">トップページ</h1>
+  <p>Welcome! {{ data?.authUser ? data.authUser.name : "stranger" }}</p>
 </template>
