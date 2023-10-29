@@ -17,6 +17,7 @@ const { data, pending, error, refresh } = await useFetch<authUser>(`${runtimeCon
   },
   credentials: "include"
 });
+await refresh();
 
 const err = ref();
 
@@ -43,6 +44,24 @@ const {
   },
 });
 
+const onSubmit = handleSubmit(async (values) => {
+  try {
+    await $fetch(`${runtimeConfig.public.apiUrl}/v1/posts`, {
+      method: "POST",
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+        "X-XSRF-TOKEN": Cookies.get("XSRF-TOKEN") ?? "",
+      },
+      body: { title: values.title, body: values.body, user_id: values.user_id },
+      credentials: "include",
+    });
+    await navigateTo("/");
+  } catch (error: any) {
+    err.value = error.data;
+  }
+});
+
 const title = defineInputBinds("title", (state) => {
   return {
     validateOnInput: state.errors.length > 0
@@ -59,10 +78,13 @@ const user_id = defineInputBinds("user_id");
 </script>
 
 <template>
-  <form class="h-full">
+  <form @submit="onSubmit" class="h-full">
+    <p class="text-red-500">{{ err?.message }}</p>
+    <p class="text-red-500">{{ errors.title }}</p>
     <input type="text" v-bind="title" name="title" id="title" placeholder="タイトル" class="block border w-full p-2" />
 
-    <div class="markdown-body flex h-[calc(100%-5.125rem)]">
+    <p class="text-red-500">{{ errors.body }}</p>
+    <div class="markdown-body flex h-[calc(100%-8.125rem)]">
       <textarea v-bind="body" name="body" id="body" placeholder="マークダウン記法で記述することができます。" class="flex-1 bg-gray-200" />
 
       <div class="flex-1">
