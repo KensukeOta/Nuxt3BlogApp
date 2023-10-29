@@ -1,5 +1,15 @@
 <script setup lang="ts">
+import type { authUser } from '~/types/authUser';
 
+const runtimeConfig = useRuntimeConfig();
+
+const { data, pending, error, refresh } = await useFetch<authUser>(`${runtimeConfig.public.apiUrl}/v1/user`, {
+  headers: {
+    "Accept": "application/json",
+  },
+  credentials: "include"
+});
+await refresh();
 </script>
 
 <template>
@@ -20,8 +30,13 @@
       <button title="検索">
         <i class="bi bi-search"></i>
       </button>
-      <NuxtLink to="/signup" class="inline-block">新規登録</NuxtLink>
-      <NuxtLink to="/login" class="inline-block">ログイン</NuxtLink>
+      <div v-if="!data?.authUser" class="inline-block">
+        <NuxtLink to="/signup" class="inline-block">新規登録</NuxtLink>
+        <NuxtLink to="/login" class="inline-block">ログイン</NuxtLink>
+      </div>
+      <div v-else class="inline-block">
+        <LogoutButton />
+      </div>
     </nav>
   </header>
 </template>
