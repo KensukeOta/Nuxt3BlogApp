@@ -19,6 +19,12 @@ const { data, pending, error, refresh } = await useFetch<authUser>(`${runtimeCon
 });
 await refresh();
 
+onMounted(async () => {
+  if (!data.value?.authUser) {
+    await navigateTo("/login");
+  }
+});
+
 const err = ref();
 
 const schema = toTypedSchema(
