@@ -48,6 +48,16 @@ const onSubmit = handleSubmit(async (values) => {
       body: { name: values.name, email: values.email, password: values.password, password_confirmation: values.password_confirmation },
       credentials: "include",
     });
+    await $fetch(`${runtimeConfig.public.apiUrl}/v1/users/login`, {
+      method: "POST",
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+        "X-XSRF-TOKEN": Cookies.get("XSRF-TOKEN") ?? "",
+      },
+      body: { email: values.email, password: values.password },
+      credentials: "include",
+    });
     await navigateTo("/");
   } catch (error: any) {
     err.value = error.data;
