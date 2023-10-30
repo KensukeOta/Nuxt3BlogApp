@@ -28,6 +28,12 @@ const { data: data2, pending: pending2, error: error2, refresh: refresh2 } = awa
   },
 });
 
+onMounted(async () => {
+  if (!data.value?.authUser || data.value.authUser.id !== data2.value?.post.user_id || data2.value.post.user.name !== route.params.name) {
+    await navigateTo("/");
+  }
+});
+
 const err = ref();
 
 const schema = toTypedSchema(
