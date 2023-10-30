@@ -9,7 +9,9 @@ const props = defineProps<{
 <template>
   <article class="border p-2">
     <h2 class="font-bold">
-      {{ post.title }}
+      <NuxtLink :to="`/${post.user.name}/posts/${post.id}`" class="inline-block w-full hover:underline">
+        {{ post.title }}
+      </NuxtLink>
     </h2>
 
     <nav class="flex justify-between">
