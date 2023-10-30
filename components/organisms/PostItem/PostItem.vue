@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import type { Post } from "@/types/Post";
+import type { User } from "~/types/User";
 
 const props = defineProps<{
   post: Post,
+  authUser?: User,
 }>();
 </script>
 
@@ -16,6 +18,7 @@ const props = defineProps<{
 
     <nav class="flex justify-between">
       by {{ post.user.name }}
+      <PostEditLinkButton :post="post" v-if="authUser?.id === post.user_id" />
     </nav>
   </article>
 </template>

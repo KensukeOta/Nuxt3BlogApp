@@ -27,6 +27,6 @@ const { data: data2, pending: pending2, error: error2, refresh: refresh2 } = awa
   </nav>
 
   <div v-for="post in data2?.posts" :key="post.id">
-    <PostItem :post="post" />
+    <PostItem :post="post" :authUser="data?.authUser" />
   </div>
 </template>
