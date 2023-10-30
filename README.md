@@ -1,75 +1,28 @@
-# Nuxt 3 Minimal Starter
+# Nuxt3BlogApp
+Nuxt.js3を使用した完全SPAのブログアプリです。
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+## 使用した技術・ツール
+- 開発環境: __Docker__, __docker compose__
+- バックエンド: __Laravel10.28.0__
 
-## Setup
+  https://github.com/KensukeOta/API-for-Nuxt3BlogApp
+- フロントエンド: __Nuxt.js3.8.0__
+- CSSフレームワーク: __Tailwind CSS3.3.4__
+- フォームライブラリ: __VeeValidate4.11.8__, __yup1.3.2__, __@vee-validate/yup4.11.8__
+- マークダウンライブラリ: __md-editor-v3 4.8.2__, __github-markdown-css5.3.0__
+- アイコンライブラリ: __Bootstrap Icons1.11.1__
+- 認証ライブラリ: __Laravel Sanctum3.3.1__
+- その他ライブラリ: __@nuxt/image1.0.0__, __@nuxt/devtools1.0.0__, __js-cookie3.0.5__
+- コンポーネント設計: __Atomic Design__
+- バージョン管理ツール: __Git__ / __GitHub__
+- タスク管理: __GitHub Issues__
+- その他言語: __Vue.js3.3.6__, __TypeScript5.2.2__, __HTML/CSS__
 
-Make sure to install the dependencies:
-
-```bash
-# npm
-npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm run dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+## 機能
+- ログイン機能
+- ユーザー登録機能
+- 記事投稿機能
+- 記事一覧表示機能
+- 記事詳細表示機能
+- 記事更新機能
+- 記事削除機能
