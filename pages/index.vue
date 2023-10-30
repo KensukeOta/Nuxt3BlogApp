@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { authUser } from "@/types/authUser";
+import type { Posts } from "@/types/Posts";
 
 const runtimeConfig = useRuntimeConfig();
 
@@ -10,6 +11,12 @@ const { data, pending, error, refresh } = await useFetch<authUser>(`${runtimeCon
   credentials: "include"
 });
 await refresh();
+
+const { data: data2, pending: pending2, error: error2, refresh: refresh2 } = await useFetch<Posts>(`${runtimeConfig.public.apiUrl}/v1/posts`, {
+  headers: {
+    "Accept": "application/json",
+  },
+});
 </script>
 
 <template>
@@ -18,4 +25,8 @@ await refresh();
   <nav class="text-center my-2">
     <PostLinkButton />
   </nav>
+
+  <div v-for="post in data2?.posts" :key="post.id">
+    <PostItem :post="post" />
+  </div>
 </template>

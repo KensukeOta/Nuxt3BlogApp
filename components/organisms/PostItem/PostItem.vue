@@ -9,11 +9,11 @@ const props = defineProps<{
 <template>
   <article class="border p-2">
     <h2 class="font-bold">
-      Hello
+      {{ post.title }}
     </h2>
 
     <nav class="flex justify-between">
-      by hoge
+      by {{ post.user.name }}
     </nav>
   </article>
 </template>
