@@ -16,6 +16,7 @@ const props = defineProps<{
 
     <nav class="flex justify-between">
       by {{ post.user.name }}
+      <PostEditLinkButton :post="post" />
     </nav>
   </article>
 </template>
