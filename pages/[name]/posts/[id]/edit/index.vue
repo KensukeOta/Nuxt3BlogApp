@@ -5,5 +5,5 @@ useHead({
 </script>
 
 <template>
-  
+  <PostEditForm />
 </template>
