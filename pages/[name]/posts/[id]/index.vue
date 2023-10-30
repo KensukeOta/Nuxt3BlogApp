@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import type { authUser } from '~/types/authUser';
 import type { PostProps } from '~/types/PostProps';
 import { MdPreview } from 'md-editor-v3';
 import "github-markdown-css/github-markdown.css";
@@ -10,22 +9,20 @@ const runtimeConfig = useRuntimeConfig();
 
 const route = useRoute();
 
-const { data, pending, error, refresh } = await useFetch<authUser>(`${runtimeConfig.public.apiUrl}/v1/user`, {
-  headers: {
-    "Accept": "application/json",
-  },
-  credentials: "include"
-});
-await refresh();
-
 const { data: data2, pending: pending2, error: error2, refresh: refresh2 } = await useFetch<PostProps>(`${runtimeConfig.public.apiUrl}/v1/posts/${route.params.id}`, {
   headers: {
     "Accept": "application/json",
   },
 });
 
+onMounted(() => {
+  if (route.params.name !== data2.value?.post.user.name) {
+    navigateTo("/");
+  }
+});
+
 useHead({
-  title: `${data2.value?.post.title} - Nuxt3BlogApp`
+  title: `${data2.value?.post.title} - Nuxt3BlogApp`,
 })
 </script>
 
