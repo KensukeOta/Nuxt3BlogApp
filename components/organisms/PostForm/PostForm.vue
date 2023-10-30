@@ -7,7 +7,7 @@ import { number, object, string } from "yup";
 import { toTypedSchema } from '@vee-validate/yup';
 import Cookies from "js-cookie";
 
-const id = 'preview-only';
+const id = "preview-only";
 
 const runtimeConfig = useRuntimeConfig();
 
