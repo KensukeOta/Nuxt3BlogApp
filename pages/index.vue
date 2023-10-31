@@ -26,7 +26,12 @@ const { data: data2, pending: pending2, error: error2, refresh: refresh2 } = awa
     <PostLinkButton />
   </nav>
 
-  <div v-for="post in data2?.posts" :key="post.id">
-    <PostItem :post="post" :authUser="data?.authUser" />
+  <div v-if="data2?.posts.length as number > 0">
+    <div v-for="post in data2?.posts" :key="post.id">
+      <PostItem :post="post" :authUser="data?.authUser" />
+    </div>
+  </div>
+  <div v-else>
+    <p class="font-bold text-center p-2">記事が投稿されていません</p>
   </div>
 </template>
